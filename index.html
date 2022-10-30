@@ -14,9 +14,127 @@
     <title>Vanilla weather app</title>
   </head>
   <body>
-    <div class="container">
-      <h1>hello</h1>
+   <div class="container content">
+      <div class="input-form">
+        <input class="search-field" type="search" placeholder="Enter a city" />
+        <i class="fa-solid fa-location-crosshairs"></i>
+      </div>
+      <div class="row main-info row align-items-center">
+        <div class="col-md-3">
+          <div class="city-time">
+            <div class="city">Kyiv</div>
+            <div class="weekday" id="weekday">Monday</div>
+            <div class="time" id="current-time">22:11</div>
+          </div>
+        </div>
+        <div class="col-md-3 icon">
+          <div class="weather-icon">
+            <i class="fa-solid fa-cloud big-icon"></i>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="current-weather">
+            <div class="temperature inline">
+              <span class="value"></span><span class="unit">C</span>
+            </div>
+            <div class="weather-text" id="weather-description">Cloudy</div>
+            <div class="min-temperature inline">10</div>
+            <div class="celsius inline">° /</div>
+            <div class="max-temperature inline">14</div>
+            <div class="celsius inline">°</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="weather-detail">
+            <div class="precipitation">
+              <i class="fa-solid fa-cloud-rain weather-detail-icon"></i>
+              <span class="detail" id="precipitation">2</span>
+              <span class="detail"> mm</span>
+            </div>
+            <div class="wind">
+              <i class="fa-solid fa-wind weather-detail-icon"></i>
+              <span class="detail" id="wind">18</span>
+              <span class="detail"> km/h</span>
+            </div>
+            <div class="humidity">
+              <i class="fa-solid fa-droplet weather-detail-icon"></i>
+              <span class="detail" id="humidity"> 91</span>
+              <span class="detail"> %</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row forecast-week">
+        <div class="col-md-2">
+          <div class="forecast-day">Mon</div>
+          <div class="forecast-icon">
+            <i class="fa-solid fa-cloud-rain"></i>
+          </div>
+          <div class="forecast-temperature">
+            <div class="min-temperature inline">10</div>
+            <div class="celsius inline">° /</div>
+            <div class="max-temperature inline">14</div>
+            <div class="celsius inline">°</div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="forecast-day">Tue</div>
+          <div class="forecast-icon">
+            <i class="fa-solid fa-cloud-rain"></i>
+          </div>
+          <div class="forecast-temperature">
+            <div class="min-temperature inline">9</div>
+            <div class="celsius inline">° /</div>
+            <div class="max-temperature inline">14</div>
+            <div class="celsius inline">°</div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="forecast-day">Wed</div>
+          <div class="forecast-icon">
+            <i class="fa-solid fa-cloud"></i>
+          </div>
+          <div class="forecast-temperature">
+            <div class="min-temperature inline">8</div>
+            <div class="celsius inline">° /</div>
+            <div class="max-temperature inline">19</div>
+            <div class="celsius inline">°</div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="forecast-day">Thu</div>
+          <div class="forecast-icon">
+            <i class="fa-solid fa-cloud-rain"></i>
+          </div>
+          <div class="forecast-temperature">
+            <div class="min-temperature inline">13</div>
+            <div class="celsius inline">° /</div>
+            <div class="max-temperature inline">19</div>
+            <div class="celsius inline">°</div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="forecast-day">Fri</div>
+          <div class="forecast-icon">
+            <i class="fa-solid fa-cloud-sun"></i>
+          </div>
+          <div class="forecast-temperature">
+            <div class="min-temperature inline">11</div>
+            <div class="celsius inline">° /</div>
+            <div class="max-temperature inline">19</div>
+            <div class="celsius inline">°</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <a
+          class="footer-link"
+          href="https://github.com/LenaUshakova/vanilla-weather-app"
+          >Open-source code</a
+        >, by Olena Ushakova
+      </div>
+      <script src="src/index.js"></script>
     </div>
-    <script src="src/index.js"></script>
+  </body>
   </body>
 </html>
