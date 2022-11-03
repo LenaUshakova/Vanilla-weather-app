@@ -1,6 +1,6 @@
 body {
   display: flex;
-  background-color: #eaf0fd;
+  background-color: #edf0f4;
 }
 
 .container {
@@ -117,8 +117,6 @@ body {
   bottom: 12px;
   right: -13px;
   opacity: 80%;
-}
-.temperature .unit {
   cursor: pointer;
 }
 
