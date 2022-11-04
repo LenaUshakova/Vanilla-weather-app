@@ -1,4 +1,5 @@
-// Current Day
+// Format Day
+
 let currentDay = document.querySelector("#weekday");
 let days = [
   "Sunday",
@@ -13,28 +14,30 @@ let day = days[new Date().getDay()];
 
 currentDay.innerHTML = day;
 
-// Current Time
-let currentTime = document.querySelector("#current-time");
-let hours = new Date().getHours();
-let minutes = new Date().getMinutes();
+//  Format Time
+function timeZoneCalc(dt) {
+  let datetime = new Date(dt);
+  let hrs = datetime.getHours();
+  let mins = datetime.getMinutes();
 
-if (hours < 10) {
-  hours = `0${hours}`;
+  if (hrs < 10) {
+    hrs = `0${hrs}`;
+  }
+
+  if (mins < 10) {
+    mins = `0${mins}`;
+  }
+  console.log("HRS MINS", hrs, mins);
+  return { hrs, mins };
 }
-
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-currentTime.innerHTML = `${hours}:${minutes}`;
 
 // City Search + Current Temperature
-function getCityName(coords) {
+function getWeatherByCoords(coords) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=${units}`;
   return axios.get(apiUrl).then(uiUpdate);
 }
 
-function getCityWeather(cityName) {
+function getWeatherByName(cityName) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=${units}`;
   return axios.get(apiUrl).then(uiUpdate);
 }
@@ -55,12 +58,18 @@ function uiUpdate(response) {
   document.querySelector(".min-temperature").innerHTML = Math.round(
     response.data.main.temp_min
   );
+  // time getting from OpenWeather API
+  let time = timeZoneCalc(response.data.dt * 1000);
+  document.querySelector(
+    "#current-time"
+  ).innerHTML = `${time.hrs}:${time.mins}`;
+  // day getting from OpenWeather API
 }
 
 function searchFieldHandler(e) {
   let cityName = searchField.value.trim();
   if (e.key === "Enter" && cityName !== "") {
-    getCityWeather(cityName);
+    getWeatherByName(cityName);
     searchField.value = "";
   }
 }
@@ -72,7 +81,7 @@ function currentLocationHandler() {
       lon: currentPosition.coords.longitude,
     };
     console.log("COORDS", coords);
-    getCityName(coords);
+    getWeatherByCoords(coords);
   });
 }
 
@@ -87,7 +96,7 @@ currentLocationHandler();
 
 // Celsius to Fahrenheit
 
-let ct = 20;
+let ct = 0;
 let ft = Math.round(ct * 1.8 + 32);
 let unitFlag = "C";
 
