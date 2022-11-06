@@ -40,6 +40,8 @@ function getWeatherByName(cityName) {
 }
 
 function uiUpdate(response) {
+  unitFlag = "C";
+  tempUnit.innerHTML = "C";
   let curTemp = Math.round(response.data.main.temp);
   cityLabel.innerHTML = response.data.name;
   tempValue.innerHTML = curTemp;
@@ -101,10 +103,7 @@ searchField.addEventListener("keypress", searchFieldHandler);
 
 getWeatherByName("Kyiv");
 
-// Celsius to Fahrenheit
-
-let ct = 1;
-let ft = Math.round(ct * 1.8 + 32);
+// Celsius to Fahrenheit flag
 let unitFlag = "C";
 
 let toFahrenheit = document.querySelector(".cels");
@@ -113,15 +112,15 @@ let tempValue = document.querySelector(".temperature.inline .value");
 let tempUnit = document.querySelector(".temperature.inline .unit");
 let currentLocation = document.querySelector(".fa-location-crosshairs");
 
-tempValue.innerHTML = ct;
-
 function unitConverter() {
+  let buf = tempValue.innerHTML;
+
   if (unitFlag === "C") {
-    tempValue.innerHTML = ft;
+    tempValue.innerHTML = Math.round(buf * 1.8 + 32);
     tempUnit.innerHTML = "F";
     unitFlag = "F";
   } else {
-    tempValue.innerHTML = ct;
+    tempValue.innerHTML = Math.round((buf - 32) / 1.8);
     tempUnit.innerHTML = "C";
     unitFlag = "C";
   }
