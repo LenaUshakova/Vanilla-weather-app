@@ -99,11 +99,11 @@ let units = "metric";
 
 searchField.addEventListener("keypress", searchFieldHandler);
 
-currentLocationHandler();
+getWeatherByName("Kyiv");
 
 // Celsius to Fahrenheit
 
-let ct = 0;
+let ct = 1;
 let ft = Math.round(ct * 1.8 + 32);
 let unitFlag = "C";
 
