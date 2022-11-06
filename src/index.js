@@ -25,7 +25,6 @@ function timeZoneCalc(dt) {
   if (mins < 10) {
     mins = `0${mins}`;
   }
-  console.log("HRS MINS", hrs, mins);
   return { hrs, mins };
 }
 
@@ -65,6 +64,13 @@ function uiUpdate(response) {
   document.querySelector("#weekday").innerHTML = dayCalc(
     response.data.dt * 1000
   );
+  // weather icon from API
+  document
+    .querySelector("#weather-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 
 function searchFieldHandler(e) {
