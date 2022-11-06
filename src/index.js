@@ -1,18 +1,16 @@
 // Format Day
-
-let currentDay = document.querySelector("#weekday");
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[new Date().getDay()];
-
-currentDay.innerHTML = day;
+function dayCalc(dt) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[new Date(dt).getDay()];
+}
 
 //  Format Time
 function timeZoneCalc(dt) {
@@ -64,6 +62,9 @@ function uiUpdate(response) {
     "#current-time"
   ).innerHTML = `${time.hrs}:${time.mins}`;
   // day getting from OpenWeather API
+  document.querySelector("#weekday").innerHTML = dayCalc(
+    response.data.dt * 1000
+  );
 }
 
 function searchFieldHandler(e) {
