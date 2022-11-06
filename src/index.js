@@ -105,22 +105,29 @@ getWeatherByName("Kyiv");
 
 // Celsius to Fahrenheit flag
 let unitFlag = "C";
-
 let toFahrenheit = document.querySelector(".cels");
 let toCelsius = document.querySelector(".fahr");
 let tempValue = document.querySelector(".temperature.inline .value");
+let tempMinValue = document.querySelector(".min-temperature");
+let tempMaxValue = document.querySelector(".max-temperature");
 let tempUnit = document.querySelector(".temperature.inline .unit");
 let currentLocation = document.querySelector(".fa-location-crosshairs");
 
 function unitConverter() {
   let buf = tempValue.innerHTML;
+  let bufMax = tempMaxValue.innerHTML;
+  let bufMin = tempMinValue.innerHTML;
 
   if (unitFlag === "C") {
     tempValue.innerHTML = Math.round(buf * 1.8 + 32);
+    tempMaxValue.innerHTML = Math.round(bufMax * 1.8 + 32);
+    tempMinValue.innerHTML = Math.round(bufMin * 1.8 + 32);
     tempUnit.innerHTML = "F";
     unitFlag = "F";
   } else {
     tempValue.innerHTML = Math.round((buf - 32) / 1.8);
+    tempMaxValue.innerHTML = Math.round((bufMax - 32) / 1.8);
+    tempMinValue.innerHTML = Math.round((bufMin - 32) / 1.8);
     tempUnit.innerHTML = "C";
     unitFlag = "C";
   }
