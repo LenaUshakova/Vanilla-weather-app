@@ -12,6 +12,7 @@ function dayCalc(dt) {
   return days[new Date(dt).getDay()];
 }
 
+
 //  Format Time
 function timeZoneCalc(dt) {
   let datetime = new Date(dt);
@@ -27,6 +28,37 @@ function timeZoneCalc(dt) {
   }
   return { hrs, mins };
 }
+
+
+// Forecast for a week
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast-week");
+  let weekDays = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+  ];
+  let forecastHTML = "";
+  weekDays.forEach(function(day){
+  forecastHTML = forecastHTML + ` 
+    <div class="col-md-2">
+  <div class="forecast-day">${day}</div>
+  <div class="forecast-icon">
+    <i class="fa-solid fa-cloud-rain"></i>
+  </div>
+  <div class="forecast-temperature">
+    <div class="min-temperature inline">10</div>
+    <div class="celsius inline">° /</div>
+    <div class="max-temperature inline">14</div>
+    <div class="celsius inline">°</div>
+  </div>
+</div>`;
+})
+forecastElement.innerHTML = forecastHTML;
+}
+
 
 // City Search + Current Temperature
 function getWeatherByCoords(coords) {
@@ -73,6 +105,8 @@ function uiUpdate(response) {
       "src",
       `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     );
+    // week forecast
+    displayForecast();
 }
 
 function searchFieldHandler(e) {
