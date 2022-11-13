@@ -89,10 +89,12 @@ function getWeatherByName(cityName) {
 function uiUpdate(response) {
   unitFlag = "C";
   tempUnit.innerHTML = "C";
+  let rain = response.data.rain;
   let curTemp = Math.round(response.data.main.temp);
   cityLabel.innerHTML = response.data.name;
   tempValue.innerHTML = curTemp;
   console.log("response", response.data);
+  document.querySelector("#precipitation").innerHTML = rain ? rain['1h'] : 0;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML =
     Math.round(response.data.wind.speed * 3.6 * 1) / 1;
