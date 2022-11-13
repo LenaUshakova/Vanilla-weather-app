@@ -31,31 +31,41 @@ function timeZoneCalc(dt) {
 
 
 // Forecast for a week
-function displayForecast(response) {
-  console.log(response.data.daily);
-  let forecastElement = document.querySelector("#forecast-week");
-  let weekDays = [
+function forecastDayCalc(dt) {
+  let date = new Date(dt * 1000);
+  let day = date.getDay();
+  let days = [
     "Sun",
     "Mon",
     "Tue",
     "Wed",
     "Thu",
+    "Fri",
+    "Sat",
   ];
+  return days[day];
+}
+
+function displayForecast(response) {
+  console.log(response.data.daily)
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast-week");
   let forecastHTML = "";
-  weekDays.forEach(function(day){
+  forecast.forEach(function(day, index){
+    if (index <5){
   forecastHTML = forecastHTML + ` 
     <div class="col-md-2">
-  <div class="forecast-day">${day}</div>
+  <div class="forecast-day">${forecastDayCalc(day.dt)}</div>
   <div class="forecast-icon">
-    <i class="fa-solid fa-cloud-rain"></i>
+    <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" width="60" alt=${day.weather[0].main}/>
   </div>
   <div class="forecast-temperature">
-    <div class="min-temperature inline">10</div>
+    <div class="min-temperature inline">${Math.round(day.temp.min)}</div>
     <div class="celsius inline">° /</div>
-    <div class="max-temperature inline">14</div>
+    <div class="max-temperature inline">${Math.round(day.temp.max)}</div>
     <div class="celsius inline">°</div>
   </div>
-</div>`;
+</div>`;}
 })
 forecastElement.innerHTML = forecastHTML;
 }
