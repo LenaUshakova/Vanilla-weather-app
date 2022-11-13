@@ -45,6 +45,11 @@ body {
     0 0 8px rgba(8, 8, 8, 0.3);
 }
 
+#location-pointer {
+  cursor: pointer;
+  color: #ef7151;
+}
+
 .main-info {
   justify-content: center;
   margin: 0 70px;
@@ -118,6 +123,8 @@ body {
   right: -13px;
   opacity: 80%;
   cursor: pointer;
+  color: #ef7151;
+  font-weight: bold;
 }
 
 .weather-text {
@@ -189,5 +196,11 @@ body {
   }
   .weather-detail {
     padding-left: 100px;
+  }
+}
+
+@media (min-width: 767px) {
+  .container, .container-md, .container-sm {
+    max-width: 960px;
   }
 }
