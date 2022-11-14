@@ -195,7 +195,18 @@ body {
     text-align: center;
   }
   .weather-detail {
+    padding-top:30px;
+    padding-left: 0px;
 
+  }
+  .weather-detail div {
+  align-content: center;
+  text-align: center;
+  }
+  #forecast-week {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;
   }
 }
 
