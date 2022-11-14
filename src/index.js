@@ -14,8 +14,10 @@ function dayCalc(dt) {
 
 
 //  Format Time
-function timeZoneCalc(dt) {
-  let datetime = new Date(dt);
+function timeZoneCalc(dt, tz) {
+  const localTimeShiftSec = new Date().getTimezoneOffset()*60;
+  const deltaTimeShiftSec = localTimeShiftSec + tz;
+  let datetime = new Date(dt + deltaTimeShiftSec*1000);
   let hrs = datetime.getHours();
   let mins = datetime.getMinutes();
 
@@ -107,7 +109,8 @@ function uiUpdate(response) {
     response.data.main.temp_min
   );
   // time getting from OpenWeather API
-  let time = timeZoneCalc(response.data.dt * 1000);
+  let time = timeZoneCalc(response.data.dt * 1000, response.data.timezone);
+
   document.querySelector(
     "#current-time"
   ).innerHTML = `${time.hrs}:${time.mins}`;
